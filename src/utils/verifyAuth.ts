@@ -1,15 +1,15 @@
 import * as jwt from "jsonwebtoken";
 require('dotenv').config
 
-export interface AuthTokenPayload {  // 1
+export interface AuthTokenPayload {  
     userId: number;
 }
 
-export function decodeAuthHeader(authHeader: String): AuthTokenPayload { // 2
-    const token = authHeader.replace("Bearer ", "");  // 3
+export function decodeAuthHeader(authHeader: String): AuthTokenPayload { 
+    const token = authHeader.replace("Bearer ", "");  
 
     if (!token) {
         throw new Error("No token found");
     }
-    return jwt.verify(token, `${process.env.ACCESS_SECRET}`) as AuthTokenPayload;  // 4
+    return jwt.verify(token, `${process.env.ACCESS_SECRET}`) as AuthTokenPayload;  
 }
